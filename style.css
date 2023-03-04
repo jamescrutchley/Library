@@ -101,3 +101,11 @@
     margin: 0;
     text-align: start;
   }
+
+  .read {
+    background-color: lightgreen;
+  }
+
+  .read-button:hover {
+    cursor: pointer;
+  }

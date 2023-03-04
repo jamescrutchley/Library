@@ -8,7 +8,7 @@ const collection = [
 const bookshelf = document.querySelector('.bookshelf');
 
 
-function Book(title, author, read=true, pageCount='unknown') {
+function Book(title, author, read, pageCount='unknown') {
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
@@ -18,9 +18,7 @@ function Book(title, author, read=true, pageCount='unknown') {
 collection.push( new Book('Contact', 'Carl Sagan', true, 400));
 
 Book.prototype.toggleRead = function() {
-    console.log(this.read)
     this.read = this.read ? false : true;
-    console.log(this);
     return this.read;
 } 
 
@@ -37,7 +35,7 @@ function displayCollection() {
 
         const isRead = document.createElement('p');
         if (book.read) {
-            isRead.classList.add('read');
+            bookDiv.classList.add('read');
             isRead.textContent = 'Read';
         } else {
             isRead.textContent = 'Unread';
@@ -61,9 +59,11 @@ const handleBookEvents = (e) => {
         switch (collection[index].toggleRead()) {
             case true:
                 e.target.textContent = 'Read';
+                e.target.parentElement.classList.add('read')
                 break;
             case false:
                 e.target.textContent = 'Unread'
+                e.target.parentElement.classList.remove('read')
                 break;
             default:
                 //
@@ -111,13 +111,13 @@ const submitBook = () => {
 
     if ((title.value && author.value)) {
         collection.push(
-            new Book(title.value,author.value, read.value, pageCount.value)
+            new Book(title.value,author.value, read.checked, pageCount.value)
             );
     }
 
     title.value = '';
     author.value = '';
-    read.value = 'true';
+    read.value = '';
     pageCount.value = '';
 
     closeForm();
