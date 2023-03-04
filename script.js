@@ -7,9 +7,19 @@ const collection = [
 
 const bookshelf = document.querySelector('.bookshelf');
 
-function Book() {
-
+function Book(title, author, read=false, pageCount='unknown') {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.read = read;
 }
+
+collection.push( new Book('Contact', 'Carl Sagan', true, 400));
+
+Book.prototype.toggleRead = function() {
+    console.log(this);
+    
+} 
 
 
 function displayCollection() {
@@ -18,12 +28,19 @@ function displayCollection() {
     });
 
     collection.forEach(book => {
-        const bookDiv = document.createElement("div")
+        const bookDiv = document.createElement("div");
+        bookDiv.id = 'book';
         const bookTitle = document.createTextNode(book.title);
+        const isRead = document.createElement('p');
+        isRead.textContent = book.read ? 'Read' : 'Unread';
+        bookDiv.appendChild(isRead);
         bookDiv.appendChild(bookTitle);
         bookDiv.classList.add('book-card')
         bookshelf.appendChild(bookDiv);
     }) 
+
+    const books = document.querySelectorAll('#book')
+    books.forEach((book, i) => book.setAttribute('data-index', i))
 }
 
 displayCollection();
@@ -55,11 +72,13 @@ const submitBook = () => {
 
     let title = document.querySelector('#title');
     let author = document.querySelector('#author');
+    let read = document.querySelector('#read');
+    let pageCount = document.querySelector('#pages');
 
     if ((title.value && author.value)) {
         collection.push(
-            {title: title.value,
-             author: author.value,});
+            new Book(title.value,author.value, read.value, pageCount.value)
+            );
     }
 
     title.value = '';
@@ -76,3 +95,4 @@ submitBookButton.addEventListener('click', function(event) {
 });
 addBookButton.addEventListener('click', openForm);
 closeFormButton.addEventListener('click', closeForm);
+
