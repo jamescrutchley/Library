@@ -24,3 +24,27 @@ function displayCollection() {
 }
 
 displayCollection();
+
+
+// Add book button and form logic 
+
+
+const form = document.querySelector(".add-book-form");
+const addBookButton = document.querySelector(".add-book-button");
+const submitBookButton = document.querySelector(".submit-book");
+const closeFormButton = document.querySelector(".close-form-button");
+
+
+// switch to toggle?
+
+function openForm() {
+    form.style.display = "block";
+  }
+
+  
+function closeForm() {
+    form.style.display = "none";
+}
+
+addBookButton.addEventListener('click', openForm);
+closeFormButton.addEventListener('click', closeForm);
