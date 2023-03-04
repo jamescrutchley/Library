@@ -1,0 +1,18 @@
+body {
+    display: flex;
+}
+
+.book-card {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 1em;
+    
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    height: 200px;
+    width: 100px;
+    background-color: aliceblue;
+    border: 2px solid grey;
+}
