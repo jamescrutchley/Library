@@ -9,31 +9,43 @@
 </head>
 <body>
 
-    <div class="bookshelf"></div>
+    <div class="container">
 
-    <button type="button" id='button' class="add-book-button">Add Book</button>
-    <form class="add-book-form" action="">
-        <ul>
-            <li class="form-row">
-                <button type="button" class="close-form-button">X</button>
-            </li>
+        <div class="header">
+            <h1>Library</h1>
+        </div>
 
-            <li class="form-row">
-                <p>Add Book</p>
-            </li>
+        <div class="bookshelf"></div>
+    
+        <button type="button" id='button' class="add-book-button">+ Add Book</button>
+        <form class="add-book-form" action="">
+            <ul>
+                <li class="form-row">
+                    <button type="button" class="close-form-button">X</button>
+                </li>
+    
+                <li class="form-row">
+                    <p>Add Book</p>
+                </li>
+    
+                <li class="form-row">
+                  <label for="title">Book Title:</label>
+                  <input class='book-input' type="text" id='title' name='title' required autofocus>
+                </li>
+                
+                <li class="form-row">
+                  <label for="author">Author:</label>
+                  <input class='book-input' type="text" name='author' id='author' required>
+                </li>
+                <button type="submit" class="submit-book">Submit</button>
+            </ul>
+        </form>
+    
+        <div class="footer"></div>
 
-            <li class="form-row">
-              <label for="title">Book Title:</label>
-              <input class='book-input' type="text" id='title' name='title' required>
-            </li>
-            
-            <li class="form-row">
-              <label for="author">Author:</label>
-              <input class='book-input' type="text" name='author' id='author' required>
-            </li>
-            <button type="submit" class="submit-book">Submit</button>
-        </ul>
-    </form>
+    </div>
+
+
     
 </body>
 </html>

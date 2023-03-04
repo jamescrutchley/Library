@@ -76,16 +76,3 @@ submitBookButton.addEventListener('click', function(event) {
 });
 addBookButton.addEventListener('click', openForm);
 closeFormButton.addEventListener('click', closeForm);
-
-
-// enter key form submission
-
-let inputs = document.querySelectorAll('.book-input');
-
-// inputs.forEach(input => input.addEventListener('keydown', (e) => {
-//     switch (e.key) 
-//         {
-//         case 'Enter':
-//         submitBook();
-//         }
-// }));
