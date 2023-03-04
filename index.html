@@ -9,27 +9,29 @@
 </head>
 <body>
 
-    <button id='button' class="add-book-button">Add Book</button>
-    <form class="add-book-form" action="#">
+    <div class="bookshelf"></div>
+
+    <button type="button" id='button' class="add-book-button">Add Book</button>
+    <form class="add-book-form" action="">
         <ul>
             <li class="form-row">
-                <button class="close-form-button">X</button>
+                <button type="button" class="close-form-button">X</button>
             </li>
-            
+
             <li class="form-row">
                 <p>Add Book</p>
             </li>
 
             <li class="form-row">
               <label for="title">Book Title:</label>
-              <input type="text" id='title' name='title' required>
+              <input class='book-input' type="text" id='title' name='title' required>
             </li>
             
             <li class="form-row">
               <label for="author">Author:</label>
-              <input type="email" name='author' id='author' required>
+              <input class='book-input' type="text" name='author' id='author' required>
             </li>
-            <button class="submit-book">Submit</button>
+            <button type="submit" class="submit-book">Submit</button>
         </ul>
     </form>
     

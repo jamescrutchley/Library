@@ -1,5 +1,6 @@
-body {
+.bookshelf {
     display: flex;
+    flex-flow: row wrap;
 }
 
 .book-card {
@@ -22,7 +23,8 @@ body {
     padding: 10px;
     background-color: white;
 
-    display: none;
+    display: block; 
+    /* for testing */
     position: fixed;
     bottom: 0;
     right: 15px;
