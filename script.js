@@ -7,7 +7,8 @@ const collection = [
 
 const bookshelf = document.querySelector('.bookshelf');
 
-function Book(title, author, read=false, pageCount='unknown') {
+
+function Book(title, author, read=true, pageCount='unknown') {
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
@@ -17,8 +18,10 @@ function Book(title, author, read=false, pageCount='unknown') {
 collection.push( new Book('Contact', 'Carl Sagan', true, 400));
 
 Book.prototype.toggleRead = function() {
+    console.log(this.read)
+    this.read = this.read ? false : true;
     console.log(this);
-    
+    return this.read;
 } 
 
 
@@ -31,9 +34,17 @@ function displayCollection() {
         const bookDiv = document.createElement("div");
         bookDiv.id = 'book';
         const bookTitle = document.createTextNode(book.title);
+
         const isRead = document.createElement('p');
-        isRead.textContent = book.read ? 'Read' : 'Unread';
+        if (book.read) {
+            isRead.classList.add('read');
+            isRead.textContent = 'Read';
+        } else {
+            isRead.textContent = 'Unread';
+        }
+        isRead.classList.add('read-button')
         bookDiv.appendChild(isRead);
+
         bookDiv.appendChild(bookTitle);
         bookDiv.classList.add('book-card')
         bookshelf.appendChild(bookDiv);
@@ -42,6 +53,29 @@ function displayCollection() {
     const books = document.querySelectorAll('#book')
     books.forEach((book, i) => book.setAttribute('data-index', i))
 }
+
+
+const handleBookEvents = (e) => {
+    try {
+        let index = e.target.parentElement.dataset.index;
+        switch (collection[index].toggleRead()) {
+            case true:
+                e.target.textContent = 'Read';
+                break;
+            case false:
+                e.target.textContent = 'Unread'
+                break;
+            default:
+                //
+                break;
+        }
+    } catch {
+        console.log('invalid')
+    }
+   
+}
+
+bookshelf.addEventListener('click', handleBookEvents)
 
 displayCollection();
 
@@ -83,6 +117,8 @@ const submitBook = () => {
 
     title.value = '';
     author.value = '';
+    read.value = 'true';
+    pageCount.value = '';
 
     closeForm();
 
