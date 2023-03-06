@@ -1,9 +1,7 @@
-let collection = [
-    {title: 'Don Quixote', author: 'Miguel de Cervantes'},
-    {title: 'War of the Worlds', author: 'H.G Wells'},
-    {title: "Cat's Cradle", author: 'Kurt Vonnegut'},
-    {title: "Figuring", author: 'Maria Papova'},
-];
+let collection = [];
+
+collection.push( new Book('Contact', 'Carl Sagan', true, 432));
+collection.push( new Book('Figuring', 'Maria Papova', false, 578));
 
 const bookshelf = document.querySelector('.bookshelf');
 
@@ -15,7 +13,6 @@ function Book(title, author, read, pageCount='unknown') {
     this.read = read;
 }
 
-collection.push( new Book('Contact', 'Carl Sagan', true, 400));
 
 Book.prototype.toggleRead = function() {
     this.read = this.read ? false : true;
@@ -41,13 +38,13 @@ function displayCollection() {
         bookDiv.appendChild(authorText);
         
         const pageCountText = document.createElement('p');
-        pageCountText.textContent = book.pageCount;
+        pageCountText.textContent = `Pages: ${book.pageCount}`;
         bookDiv.appendChild(pageCountText);
 
-        const isReadText = document.createElement('p');
-        isReadText.textContent = book.read ? 'Read' : 'Unread';
-        isReadText.classList.add('read-button');
-        bookDiv.appendChild(isReadText);
+        const isRead = document.createElement('button');
+        isRead.textContent = book.read ? 'Read' : 'Unread';
+        isRead.classList.add('read-button');
+        bookDiv.appendChild(isRead);
 
         const removeBook = document.createElement('button');
         removeBook.classList.add('remove-book-button'); 
@@ -56,7 +53,7 @@ function displayCollection() {
 
         
         bookDiv.classList.add('book-card')
-        bookDiv.classList.add(isReadText.textContent == 'Read' ? 'read' : null);
+        bookDiv.classList.add(isRead.textContent == 'Read' ? 'read' : null);
         bookshelf.appendChild(bookDiv);
 
 

@@ -34,24 +34,43 @@
 
 .book-card {
     position: relative;
-    font-size: 0.9rem;
     box-sizing: border-box;
     display: inline-block;
     margin: 1em;
+    padding: 0.5em;
     
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     align-content: center;
     justify-content: center;
 
     height: fit-content;
+    width: fit-content;
     background-color: aliceblue;
     border: 2px solid grey;
 }
 
+.book-card:hover {
+    border: 3px solid black;
+}
+
+.book-card > * {
+    font-size: 2vw;
+}
+
+.book-card > button {
+    background: white;
+    color: black;
+    border: grey solid 2px;
+    margin: 0.2em;
+}
+
+.book-card > button:hover {
+    border: black solid 2px;
+}
+
 .book-card > p:first-child {
     font-weight: bold;
-
 }
 
 .add-book-button {
