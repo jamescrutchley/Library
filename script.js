@@ -111,33 +111,7 @@ const handleBookEvents = (e) => {
             break;
     } 
 
-    // try {
-    //     let index = e.target.parentElement.dataset.index;
-        // switch (collection[index].toggleRead()) {
-        //     case true:
-        //         e.target.textContent = 'Read';
-        //         e.target.parentElement.classList.add('read')
-        //         break;
-        //     case false:
-        //         e.target.textContent = 'Unread'
-        //         e.target.parentElement.classList.remove('read')
-        //         break;
-        //     default:
-        //         //
-        //         break;
-    //     }
-    // } catch {
-    //     console.log('invalid')
-    // }
 }
-
-
-
-
-
-
-
-
 
 bookshelf.addEventListener('click', handleBookEvents)
 
@@ -145,7 +119,6 @@ displayCollection();
 
 
 // Add book button and form logic 
-
 
 const form = document.querySelector(".add-book-form");
 const addBookButton = document.querySelector(".add-book-button");
