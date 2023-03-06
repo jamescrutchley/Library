@@ -1,4 +1,4 @@
-const collection = [
+let collection = [
     {title: 'Don Quixote', author: 'Miguel de Cervantes'},
     {title: 'War of the Worlds', author: 'H.G Wells'},
     {title: "Cat's Cradle", author: 'Kurt Vonnegut'},
@@ -31,49 +31,116 @@ function displayCollection() {
     collection.forEach(book => {
         const bookDiv = document.createElement("div");
         bookDiv.id = 'book';
-        const bookTitle = document.createTextNode(book.title);
 
-        const isRead = document.createElement('p');
-        if (book.read) {
-            bookDiv.classList.add('read');
-            isRead.textContent = 'Read';
-        } else {
-            isRead.textContent = 'Unread';
-        }
-        isRead.classList.add('read-button')
-        bookDiv.appendChild(isRead);
-
+        const bookTitle = document.createElement('p');
+        bookTitle.textContent = book.title;
         bookDiv.appendChild(bookTitle);
+        
+        const authorText = document.createElement('p');
+        authorText.textContent = book.author;
+        bookDiv.appendChild(authorText);
+        
+        const pageCountText = document.createElement('p');
+        pageCountText.textContent = book.pageCount;
+        bookDiv.appendChild(pageCountText);
+
+        const isReadText = document.createElement('p');
+        isReadText.textContent = book.read ? 'Read' : 'Unread';
+        isReadText.classList.add('read-button');
+        bookDiv.appendChild(isReadText);
+
+        const removeBook = document.createElement('button');
+        removeBook.classList.add('remove-book-button'); 
+        removeBook.textContent = 'Remove Book';
+        bookDiv.appendChild(removeBook);
+
+        
         bookDiv.classList.add('book-card')
+        bookDiv.classList.add(isReadText.textContent == 'Read' ? 'read' : null);
         bookshelf.appendChild(bookDiv);
-    }) 
+
 
     const books = document.querySelectorAll('#book')
     books.forEach((book, i) => book.setAttribute('data-index', i))
+})
+}
+
+
+// better to remove from collection array then refresh elements, 
+// or remove from elements and update collection array?
+
+const removeBook = (index) => {
+    collection = collection.filter(item => item !== collection[index]);
+    displayCollection();
+
+    // let element = Array.from(bookshelf.childNodes)[index];
+    // bookshelf.removeChild(element);
 }
 
 
 const handleBookEvents = (e) => {
-    try {
-        let index = e.target.parentElement.dataset.index;
-        switch (collection[index].toggleRead()) {
-            case true:
-                e.target.textContent = 'Read';
-                e.target.parentElement.classList.add('read')
-                break;
-            case false:
-                e.target.textContent = 'Unread'
-                e.target.parentElement.classList.remove('read')
-                break;
-            default:
-                //
-                break;
-        }
-    } catch {
-        console.log('invalid')
+
+    let target = e.target;
+    let index = (target.parentElement.dataset.index) ? (target.parentElement.dataset.index) : null;
+
+    console.log(target, index, target.classList, target.classList == 'read-button');
+
+    if (index === null) {
+        return;
     }
-   
+
+    switch(target.classList.value) {
+        case 'read-button':
+            switch (collection[index].toggleRead()) {
+                case true:
+                    e.target.textContent = 'Read';
+                    e.target.parentElement.classList.add('read')
+                    break;
+                case false:
+                    e.target.textContent = 'Unread'
+                    e.target.parentElement.classList.remove('read')
+                    break;
+                default:
+                    //
+                    break;
+            }
+            break;
+        case 'remove-book-button':
+            console.log('remove book button')
+            removeBook(index);
+            break;
+        default:
+            console.log('??');
+            break;
+    } 
+
+    // try {
+    //     let index = e.target.parentElement.dataset.index;
+        // switch (collection[index].toggleRead()) {
+        //     case true:
+        //         e.target.textContent = 'Read';
+        //         e.target.parentElement.classList.add('read')
+        //         break;
+        //     case false:
+        //         e.target.textContent = 'Unread'
+        //         e.target.parentElement.classList.remove('read')
+        //         break;
+        //     default:
+        //         //
+        //         break;
+    //     }
+    // } catch {
+    //     console.log('invalid')
+    // }
 }
+
+
+
+
+
+
+
+
 
 bookshelf.addEventListener('click', handleBookEvents)
 
