@@ -1,23 +1,21 @@
 let collection = [];
 
-collection.push( new Book('Contact', 'Carl Sagan', true, 432));
-collection.push( new Book('Figuring', 'Maria Papova', false, 578));
 
 const bookshelf = document.querySelector('.bookshelf');
 
 
-function Book(title, author, read, pageCount='unknown') {
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.read = read;
+class Book {
+    constructor(title, author, read, pageCount='unknown') {
+        Object.assign(this, { title, author, read, pageCount });
+    }
+    toggleRead = () => {
+        this.read = this.read ? false: true;
+        return this.read;
+    }
 }
 
-
-Book.prototype.toggleRead = function() {
-    this.read = this.read ? false : true;
-    return this.read;
-} 
+collection.push( new Book('Contact', 'Carl Sagan', true, 432));
+collection.push( new Book('Figuring', 'Maria Papova', false, 578));
 
 
 function displayCollection() {
