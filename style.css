@@ -1,172 +1,182 @@
 :root {
-    height: 100vh;
-    width: 100vw;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .container {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 
-    display: grid;
-    grid-template-rows: 10% 80% 10%;
-    grid-template-areas: 
+  display: grid;
+  grid-template-rows: 10% 80% 10%;
+  grid-template-areas:
     "header"
     "content"
     "footer";
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .bookshelf {
-    width: 100%;
-    max-height: 70%;
-    display: flex;
-    flex-flow: row wrap;
-    
-    grid-area: content;
+  width: 100%;
+  max-height: 70%;
+  display: flex;
+  flex-flow: row wrap;
+
+  grid-area: content;
 }
 
 .book-card {
-    position: relative;
-    box-sizing: border-box;
-    display: inline-block;
-    margin: 1em;
-    padding: 0.5em;
-    
-    display: flex;
-    flex-flow: column;
-    align-content: center;
-    justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 1em;
+  padding: 0.5em;
 
-    height: fit-content;
-    width: fit-content;
-    background-color: aliceblue;
-    border: 2px solid grey;
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  justify-content: center;
+
+  height: fit-content;
+  width: fit-content;
+  max-width: 20vw;
+  background-color: aliceblue;
+  border: 2px solid grey;
 }
 
 .book-card:hover {
-    border: 3px solid black;
+  border: 2px solid black;
 }
 
 .book-card > * {
-    font-size: 1.8vw;
+  font-size: 1.8vw;
+  overflow-wrap: break-word;
 }
 
 .book-card > button {
-    background: white;
-    color: black;
-    border: grey solid 2px;
-    margin: 0.2em;
+  background: white;
+  color: black;
+  border: grey solid 2px;
+  margin: 0.2em;
 }
 
 .book-card > button:hover {
-    border: black solid 2px;
-    background-color: #f1f1f1;
+  border: black solid 2px;
+  background-color: #f1f1f1;
 }
 
 .book-card > p:first-child {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .add-book-button {
-    background-color: transparent;
-    font-weight: bold;
-    border: none;
+  justify-self: center;
+  background-color: transparent;
+  font-weight: bold;
+  border: none;
+  z-index: 100;
+  width: fit-content;
 }
 
 .add-book-button:hover {
-    cursor: pointer;
-    font-size: 1.01em;
+  cursor: pointer;
+  font-size: 1.01em;
 }
 
 .add-book-form {
-    max-width: 300px;
-    padding: 10px;
-    background-color: white;
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
 
-    display: none; 
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-  }
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
 
-  .add-book-form ul {
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-  }
+.add-book-form ul {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+}
 
-  .add-book-form p {
-    font-weight: bold;
-  }
+.add-book-form p {
+  font-weight: bold;
+}
 
-  .add-book-form > ul > button {
-    position: center;
-    font-size: 1em;
-    background: white;
-    color: black;
-    border: grey solid 2px;
-    padding: 0.5em;
-  }
+.add-book-form > ul > button {
+  position: center;
+  font-size: 1em;
+  background: white;
+  color: black;
+  border: grey solid 2px;
+  padding: 0.5em;
+}
 
-  .add-book-form > ul > button:hover {
-    border: black solid 2px;
-    background-color: #f1f1f1;
-  }
+.add-book-form > ul > button:hover {
+  border: black solid 2px;
+  background-color: #f1f1f1;
+}
 
-  .add-book-form:has(input:focus), .add-book-form:hover {
-    border: 3px solid black;
-  }
+.add-book-form:has(input:focus),
+.add-book-form:hover {
+  border: 3px solid black;
+}
 
-  .close-form-button {
-    justify-self: flex-end;
-    align-self: flex-end;
-  }
+.close-form-button {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
 
-  .form-row {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 0.3em;
-  }
+.form-row {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.3em;
+}
 
-  .form-row:first-child {
-    margin: 0;
-    padding: 0;
-  }
+.input-error-message {
+    color: red;
+}
 
+.form-row:first-child {
+  margin: 0;
+  padding: 0;
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  .form-row {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: flex-start;
-    margin-bottom: 30px;
-  }
+.form-row {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
 
-  .form-row:nth-child(2), .form-row:nth-child(2) > p {
-    align-items: center;
-    justify-content: flex-start;
-    padding-bottom: 1em;
-    margin: 0;
-    text-align: start;
-  }
+.form-row:nth-child(2),
+.form-row:nth-child(2) > p {
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 1em;
+  margin: 0;
+  text-align: start;
+}
 
-  .read {
-    background-color: lightgreen;
-  }
+.read {
+  background-color: lightgreen;
+}
 
-  .read-button:hover {
-    cursor: pointer;
-  }
+.read-button:hover {
+  cursor: pointer;
+}
